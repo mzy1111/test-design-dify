@@ -15,7 +15,7 @@
 
 1、打开[工作室 - Dify](https://cloud.dify.ai/apps)
 
-![](.\images\1.png)
+![]([.\images\1.png](https://github.com/mzy1111/test-design-dify/blob/main/images/1.png?raw=true))
 
 2、导入下载的测试设计工作流.yml
 
