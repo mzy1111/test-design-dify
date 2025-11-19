@@ -15,17 +15,17 @@
 
 1、打开[工作室 - Dify](https://cloud.dify.ai/apps)
 
-![](.\images\1.png)
+![](https://github.com/mzy1111/test-design-dify/blob/main/images/1.png?raw=true)
 
 2、导入下载的测试设计工作流.yml
 
-![](.\images\2.png)
+![](https://github.com/mzy1111/test-design-dify/blob/main/images/2.png?raw=true)
 
 3、给工作流配置API key
 
-![](.\images\3.png)
+![](https://github.com/mzy1111/test-design-dify/blob/main/images/3.png?raw=true)
 
 4、运行
 
-![](.\images\4.png)
+![](https://github.com/mzy1111/test-design-dify/blob/main/images/4.png?raw=true)
 
