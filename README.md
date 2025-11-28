@@ -2,6 +2,7 @@
 ## 更新简介：test-design-dify-v0.2
 
 新增代码块，实现 markdown格式->xmind格式 ，将生成的文本粘贴到xmind可以直接生成有层次的测试设计
+<img width="2141" height="1209" alt="image" src="https://github.com/user-attachments/assets/d3193230-5388-47b5-8164-5f1b2e029ee4" />
 
 
 
