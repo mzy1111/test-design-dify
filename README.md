@@ -1,4 +1,12 @@
 # test-design-dify
+## 更新简介：test-design-dify-v0.2
+
+新增代码块，实现 markdown格式->xmind格式 ，将生成的文本粘贴到xmind可以直接生成有层次的测试设计
+
+
+
+
+
 ## 1、dify是什么
 
 本项目使用 Dify构建，Dify 是一个开源的 LLM 应用开发平台，提供可视化的工作流编排和 RAG 引擎，让 AI 应用开发更加简单高效。
