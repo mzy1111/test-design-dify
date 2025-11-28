@@ -9,10 +9,10 @@ dependencies:
 - current_identifier: null
   type: marketplace
   value:
-    marketplace_plugin_unique_identifier: langgenius/tongyi:0.1.0@a2dd9bb656a2722292e8936f3287d53ba176cfbbe9b8bfafc596d4a2ddd99eb2
+    marketplace_plugin_unique_identifier: langgenius/ollama:0.1.0@7c18c74b94a855de83aa66f376939d47b96a49b6dbb6904b46b267cb0213396e
     version: null
 kind: app
-version: 0.4.0
+version: 0.5.0
 workflow:
   conversation_variables: []
   environment_variables: []
@@ -62,19 +62,17 @@ workflow:
   graph:
     edges:
     - data:
-        isInIteration: false
         isInLoop: false
-        sourceType: llm
-        targetType: end
-      id: 1763046499678-source-1763047019972-target
-      source: '1763046499678'
+        sourceType: document-extractor
+        targetType: llm
+      id: 1763560315679-source-1763046499678-target
+      source: '1763560315679'
       sourceHandle: source
-      target: '1763047019972'
+      target: '1763046499678'
       targetHandle: target
       type: custom
       zIndex: 0
     - data:
-        isInIteration: false
         isInLoop: false
         sourceType: start
         targetType: document-extractor
@@ -86,13 +84,25 @@ workflow:
       type: custom
       zIndex: 0
     - data:
+        isInIteration: false
         isInLoop: false
-        sourceType: document-extractor
-        targetType: llm
-      id: 1763560315679-source-1763046499678-target
-      source: '1763560315679'
+        sourceType: llm
+        targetType: code
+      id: 1763046499678-source-1764340958334-target
+      source: '1763046499678'
       sourceHandle: source
-      target: '1763046499678'
+      target: '1764340958334'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: end
+      id: 1764340958334-source-1763047019972-target
+      source: '1764340958334'
+      sourceHandle: source
+      target: '1763047019972'
       targetHandle: target
       type: custom
       zIndex: 0
@@ -116,19 +126,19 @@ workflow:
           required: true
           type: file
           variable: file
-      height: 87
+      height: 107
       id: '1763046492851'
       position:
-        x: 79
-        y: 282
+        x: 0
+        y: 0
       positionAbsolute:
-        x: 79
-        y: 282
+        x: 0
+        y: 0
       selected: false
       sourcePosition: right
       targetPosition: left
       type: custom
-      width: 241
+      width: 242
     - data:
         context:
           enabled: true
@@ -138,21 +148,21 @@ workflow:
         model:
           completion_params: {}
           mode: chat
-          name: qvq-max-latest
-          provider: langgenius/tongyi/tongyi
+          name: deepseek-r1:7b
+          provider: langgenius/ollama/ollama
         prompt_template:
         - id: 8e9cc062-cfc6-45df-8079-c46387479b53
           role: system
-          text: 你是一名软件测试专家
+          text: 你是一名软件测试专家，你能够读取需求文档，根据需求描述生成测试设计
         - id: 0d4a863e-1a07-43a5-9ed9-832504566fd3
           role: user
           text: '我需要你读取{{#1763560315679.text#}}，并根据文档内容生成测试用例。
 
 
-            每一条测试用例包含测试步骤、预期结果，测试用例包含功能用例、稳定性用例、兼容性用例、易用性测试用例、安全测试用例等。
+            其中每一条测试用例包含测试步骤、预期结果，测试用例类型包含功能用例、稳定性用例、兼容性用例、易用性测试用例、安全测试用例等。
 
 
-            测试设计要以markdown格式输出
+            测试设计要以markdown格式输出，且要能够复制到markdown文件中直接可以解析
 
 
             输出内容不要包含思考过程！
@@ -167,77 +177,109 @@ workflow:
 
             "
 
-            ## 测试用例1：输入正确的用户名和密码能正常登录
+            # 购物车功能测试用例
 
 
-            ## 测试步骤
+            ## 加入购物车
 
 
-            1、输入网址打开网页\
-
-            2、输入正确的用户名和密码\
-
-            3、点击登录
+            ### 用例标题: 单次加入超出购物车数量限制
 
 
-            ## 预期结果
+            #### 用例步骤
 
 
-            3、跳转到网站首页
+            - 1、登录并进入商品界面。
 
 
-            ## 测试用例2：输入错误的用户名和密码无法登录
+            - 2、点击“加入购物车”按钮添加商品至购物车，输入超过200件的商品数量(如:201)。
 
 
-            ## 测试步骤
+            - 3、观察系统响应。
 
 
-            1、输入网址打开网页\
-
-            2、输入错误的用户名或密码\
-
-            3、点击登录
+            #### 预期结果
 
 
-            ## 预期结果
+            - 3、系统不接受超过200件的添加请求，并提示用户“最多200件”。
 
 
-            3、弹窗提示用户名或密码错误
+            ### 用例标题: 往购物出加入一件商品
 
 
-            ## 测试用例3：在不同的操作系统测试登录功能
+            #### 用例步骤
 
 
-            ## 测试步骤
+            - 1、登录并进入商品界面。
 
 
-            1、在不同的操作系统上打开浏览器输入网址进入登录页面\
-
-            2、输入正确的用户名和密码\
-
-            3、点击登录
+            - 2、点击“加入购物车”按钮添加商品至购物车，输入数量为1。
 
 
-            ## 预期结果
+            - 3、观察系统响应。
 
 
-            3、跳转到网站首页
+            #### 预期结果
+
+
+            - 3、加入购物车成功，并弹出成功字样。
+
+
+            ## 删除购物车
+
+
+            ### 用例标题: 删除购物车一件商品
+
+
+            #### 用例步骤
+
+
+            - 1、登录并进入购物车界面。
+
+
+            - 2、选中一件商品，点击删除
+
+
+            #### 预期结果
+
+
+            - 2、购物车商品少了一件
+
+
+            ### 用例标题: 批量删除购物车商品
+
+
+            #### 用例步骤
+
+
+            - 1、登录并进入购物车界面。
+
+
+            - 2、选中多件商品，点击删除
+
+
+            #### 预期结果
+
+
+            - 2、购物车商品少了第2步选中数量的商品
 
             "'
+        reasoning_format: tagged
         selected: false
+        structured_output_enabled: true
         title: LLM
         type: llm
         vision:
           enabled: false
-      height: 87
+      height: 86
       id: '1763046499678'
       position:
-        x: 691
-        y: 408
+        x: 683
+        y: 11
       positionAbsolute:
-        x: 691
-        y: 408
-      selected: true
+        x: 683
+        y: 11
+      selected: false
       sourcePosition: right
       targetPosition: left
       type: custom
@@ -245,8 +287,8 @@ workflow:
     - data:
         outputs:
         - value_selector:
-          - '1763046499678'
-          - text
+          - '1764340958334'
+          - result
           value_type: string
           variable: text
         selected: false
@@ -255,12 +297,12 @@ workflow:
       height: 87
       id: '1763047019972'
       position:
-        x: 601
-        y: 634
+        x: 1076.857142857143
+        y: -24.28571428571429
       positionAbsolute:
-        x: 601
-        y: 634
-      selected: false
+        x: 1076.857142857143
+        y: -24.28571428571429
+      selected: true
       sourcePosition: right
       targetPosition: left
       type: custom
@@ -273,21 +315,93 @@ workflow:
         variable_selector:
         - '1763046492851'
         - file
-      height: 91
+      height: 103
       id: '1763560315679'
       position:
-        x: 380
-        y: 408
+        x: 342
+        y: 2
       positionAbsolute:
-        x: 380
-        y: 408
+        x: 342
+        y: 2
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        code: "import re\nfrom typing import Dict, Any\n\n\ndef main(arg1: str) ->\
+          \ Dict[str, str]:\n    \"\"\"\n    将Markdown格式的文本转换为XMind能识别的格式\n\n    Args:\n\
+          \        arg1: Markdown格式的字符串\n\n    Returns:\n        包含转换后结果的字典\n    \"\
+          \"\"\n    try:\n        # 清理Markdown文本\n        markdown_text = arg1.strip()\n\
+          \n        # 解析Markdown结构\n        lines = markdown_text.split('\\n')\n \
+          \       xmind_structure = []\n        stack = []  # 用于跟踪当前层级\n\n       \
+          \ for line in lines:\n            line = line.strip()\n            if not\
+          \ line:\n                continue\n\n            # 处理标题 (# 二级标题 ## 三级标题等)\n\
+          \            title_match = re.match(r'^(#+)\\s+(.+)$', line)\n         \
+          \   if title_match:\n                level = len(title_match.group(1)) \
+          \ # #的数量表示层级\n                title = title_match.group(2).strip()\n\n \
+          \               # 调整堆栈以匹配当前层级\n                while stack and stack[-1]['level']\
+          \ >= level:\n                    stack.pop()\n\n                node = {\n\
+          \                    'title': title,\n                    'level': level,\n\
+          \                    'children': []\n                }\n\n             \
+          \   if stack:\n                    stack[-1]['children'].append(node)\n\
+          \                else:\n                    xmind_structure.append(node)\n\
+          \n                stack.append(node)\n\n            # 处理列表项 (- 或 * 开头)\n\
+          \            elif re.match(r'^[-*]\\s+.+', line):\n                if not\
+          \ stack:\n                    # 如果没有标题，创建根节点\n                    root_node\
+          \ = {'title': '根节点', 'level': 1, 'children': []}\n                    xmind_structure.append(root_node)\n\
+          \                    stack.append(root_node)\n\n                # 列表项作为当前标题的子节点\n\
+          \                list_match = re.match(r'^[-*]\\s+(.+)$', line)\n      \
+          \          if list_match:\n                    list_item = {\n         \
+          \               'title': list_match.group(1).strip(),\n                \
+          \        'level': stack[-1]['level'] + 1,\n                        'children':\
+          \ []\n                    }\n                    stack[-1]['children'].append(list_item)\n\
+          \n        # 如果没有解析到任何结构，返回原始文本\n        if not xmind_structure:\n      \
+          \      return {\n                \"result\": arg1,\n                \"message\"\
+          : \"未检测到有效的Markdown结构，返回原始文本\",\n                \"structure_type\": \"\
+          raw_text\"\n            }\n\n        # 转换为XMind兼容的文本格式\n        def build_xmind_text(nodes,\
+          \ indent=0):\n            result = []\n            for node in nodes:\n\
+          \                indent_str = '\\t' * (node['level'] - 1)\n            \
+          \    result.append(f\"{indent_str}{node['title']}\")\n                if\
+          \ node['children']:\n                    result.extend(build_xmind_text(node['children'],\
+          \ indent + 1))\n            return result\n\n        xmind_text_lines =\
+          \ build_xmind_text(xmind_structure)\n        xmind_result = '\\n'.join(xmind_text_lines)\n\
+          \n        return {\n            \"result\": xmind_result\n        }\n\n\
+          \    except Exception as e:\n        return {\n            \"result\": arg1,\n\
+          \            \"message\": f\"转换过程中发生错误: {str(e)}\",\n            \"structure_type\"\
+          : \"raw_text\",\n            \"error\": True\n        }\n\n\ndef _flatten_structure(nodes):\n\
+          \    \"\"\"将层级结构扁平化\"\"\"\n    result = []\n    for node in nodes:\n   \
+          \     result.append(node)\n        if node['children']:\n            result.extend(_flatten_structure(node['children']))\n\
+          \    return result"
+        code_language: python3
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: 代码执行
+        type: code
+        variables:
+        - value_selector:
+          - '1763046499678'
+          - text
+          value_type: string
+          variable: arg1
+      height: 50
+      id: '1764340958334'
+      position:
+        x: 1024
+        y: 136
+      positionAbsolute:
+        x: 1024
+        y: 136
       selected: false
       sourcePosition: right
       targetPosition: left
       type: custom
       width: 241
     viewport:
-      x: -192.6847349158644
-      y: 42.18372419653389
-      zoom: 0.7371346086455507
+      x: -389.15
+      y: 353.05
+      zoom: 0.7
   rag_pipeline_variables: []
